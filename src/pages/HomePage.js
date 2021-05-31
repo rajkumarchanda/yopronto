@@ -36,8 +36,7 @@ const HomePage = () => {
   if (prismicData.homeDoc) {
     const homeDoc = prismicData.homeDoc;
     const menuDoc = prismicData.menuDoc;
-	console.log(homeDoc.data.page_content)
-    return (
+	return (
 		
       <DefaultLayout
         wrapperClass="homepage"
