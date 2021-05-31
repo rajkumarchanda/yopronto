@@ -40,8 +40,7 @@ const Page = ({ match }) => {
   if (prismicData.pageDoc) {
     const pageDoc = prismicData.pageDoc;
     const menuDoc = prismicData.menuDoc;
-
-    return (
+	return (
       <DefaultLayout
         wrapperClass="page"
         menuDoc={menuDoc}

@@ -4,7 +4,8 @@ import {
   ImageGallery,
   ImageHighlight,
   Quote,
-  TextSection
+  TextSection,
+  EventListing
 } from './slices';
 
 /**
@@ -14,7 +15,7 @@ const SliceZone = ({ sliceZone }) => (
   <div className="container">
     {
       sliceZone.map((slice, index) => {
-        switch (slice.slice_type) {
+		switch (slice.slice_type) {
           case ('full_width_image'):
             return <FullWidthImage slice={slice} key={`slice-${index}`} />;
           case ('image_gallery'):
@@ -25,6 +26,8 @@ const SliceZone = ({ sliceZone }) => (
             return <Quote slice={slice} key={`slice-${index}`} />;
           case ('text_section'):
             return <TextSection slice={slice} key={`slice-${index}`} />;
+          case ('event_listing'):
+            return <EventListing slice={slice} key={`slice-${index}`} />;
           default:
             return null;
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RichText } from 'prismic-reactjs';
 import { PrismicLink, RichTextField } from '../prismic-elements';
 
@@ -7,33 +7,36 @@ import { PrismicLink, RichTextField } from '../prismic-elements';
  */
 const EventListing = ({ slice }) => {
 	const [prismicData, setPrismicData] = useState({ eventsDoc: null});
-	seEffect(() => {
+	useEffect(() => {
 		const fetchData = async () => {
 		  try {
-			const data = await fetch("https://8cwutw7uv3.execute-api.us-west-1.amazonaws.com/dev/get-events");
-			if (data) {
-			  setPrismicData({ data});
-			} else {
-			  console.warn('EventPage document was not found. Make sure it exists in your Prismic repository.');
-			  toggleNotFound(true);
+				const data = await fetch("https://8cwutw7uv3.execute-api.us-west-1.amazonaws.com/dev/get-events").then(function(response){
+					return response.json();
+				}).then(function(myJson) {
+					console.log(myJson);
+					setPrismicData({ myJson })
+				});
+			} catch (error) {
+				console.error(error);
 			}
-		  } catch (error) {
-			console.error(error);
-			toggleNotFound(true);
-		  }
 		}
 		fetchData();
 	}, []);
-  return (
-    <section className="image-gallery content-section">
-      <RichTextField field={slice.primary.gallery_title} />
-      <div className="gallery">
-        {slice.items.map((item, index) => (
-          <GalleryItem item={item} key={index} />
-        ))}
-      </div>
-    </section>
-  );
+	console.log(prismicData.eventsDoc);
+	if(prismicData.eventsDoc){
+	  return (
+		<section className="image-gallery content-section">
+		  <RichTextField field={slice.primary.gallery_title} />
+		  <div className="gallery">
+			{slice.items.map((item, index) => (
+			  <GalleryItem item={item} key={index} />
+			))}
+		  </div>
+		</section>
+	  );
+	}else{
+		return null;  
+	}
 };
 
 /**
@@ -53,4 +56,4 @@ const GalleryItem = ({ item }) => {
   );
 };
 
-export default ImageGallery;
+export default EventListing;
