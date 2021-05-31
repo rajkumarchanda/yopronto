@@ -23,8 +23,8 @@ const EventListing = ({ slice }) => {
 	  }, []);
 	if(events){
 	 return (
-		<section className="image-gallery content-section">
-		  <div className="gallery">
+		<section className="event-listing">
+		  <div className="row row-cols-1 row-cols-md-3 g-4">
 			{events.map((item, index) => (
 			  <GalleryItem item={item} key={index} />
 			))}
@@ -43,18 +43,17 @@ const EventListing = ({ slice }) => {
  */
 const GalleryItem = ({ item }) => {
  return (
-	<div className="card-content">
-		<div className="card-img">
-			<img src="https://smartexam-mum.s3.amazonaws.com/logo/makaut_logo1523089067.jpg" alt={item.short_title}/>
-			<span><h4>{item.short_title}</h4></span>
+	<div className="col">
+	<div className="card h-100">
+		<img className='card-img-top' src="https://smartexam-mum.s3.amazonaws.com/logo/makaut_logo1523089067.jpg" alt={item.short_title}/>
+		<div className="card-body">
+		  <h5 className="card-title">{item.short_title}</h5>
+		  <p className="card-text">{item.title}</p>
+		  <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
 		</div>
-		<div className="card-desc">
-			<h3>{item.short_title}</h3>
-			<p>{item.title}</p>
-			<a href="#" className="btn-card">Read</a>   
-		</div>
-	</div>
-    
+	</div>	
+	</div>	
+	
   );
 };
 
