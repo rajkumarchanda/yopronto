@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import { HomePage, NotFound, Page, Preview } from './pages';
+import { HomePage, NotFound, Page, Preview , Checkout} from './pages';
 import { apiEndpoint } from './prismic-configuration';
 
 const App = () => {
@@ -22,6 +22,7 @@ const App = () => {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/preview' component={Preview} />
           <Route exact path='/:uid' component={Page} />
+          <Route exact path='/booking/:eventid' component={Checkout} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

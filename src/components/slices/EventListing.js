@@ -50,6 +50,7 @@ const GalleryItem = ({ item }) => {
 		  <h5 className="card-title">{item.short_title}</h5>
 		  <p className="card-text">{item.title}</p>
 		  <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+		  <a href={"booking/" + item.id} class="btn btn-primary">Booking</a>
 		</div>
 	</div>	
 	</div>	
